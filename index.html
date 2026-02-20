@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surya Kiran N — Portfolio</title>
+  <meta name="description"
+    content="Personal portfolio of Surya Kiran N — Computer Science Engineering Student & Aspiring Software Developer." />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#25f46a",
+            "secondary": "#a855f7",
+            "background-dark": "#050a07",
+            "surface": "#102316",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"],
+            "body": ["Space Grotesk", "sans-serif"],
+          },
+          animation: {
+            'blob': 'blob 10s infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body
+  class="bg-background-dark text-slate-100 font-display min-h-screen selection:bg-primary selection:text-black overflow-x-hidden">
+
+  <!-- SVG Filters for Gooey Effect -->
+  <svg style="visibility:hidden;position:absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+    version="1.1">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="grain-overlay"></div>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <header id="navbar"
+    class="fixed top-0 w-full z-40 px-6 py-5 flex items-center justify-between border-b border-white/5 backdrop-blur-sm bg-background-dark/30 transition-all duration-300">
+    <a href="#hero" class="flex items-center gap-3 group">
+      <div class="size-8 relative flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary animate-pulse text-3xl">all_inclusive</span>
+      </div>
+      <div class="flex flex-col">
+        <h2 class="text-white text-lg font-bold tracking-widest leading-none">{ SK }</h2>
+        <span class="text-[10px] text-primary/70 font-mono tracking-[0.2em]">PORTFOLIO_V1.0</span>
+      </div>
+    </a>
+
+    <nav id="navLinks" class="hidden md:flex gap-6">
+      <a href="#about"
+        class="nav-link text-sm font-mono text-slate-400 hover:text-primary transition-colors duration-300">ABOUT</a>
+      <a href="#skills"
+        class="nav-link text-sm font-mono text-slate-400 hover:text-primary transition-colors duration-300">SKILLS</a>
+      <a href="#projects"
+        class="nav-link text-sm font-mono text-slate-400 hover:text-primary transition-colors duration-300">PROJECTS</a>
+      <a href="#contact"
+        class="nav-link text-sm font-mono text-slate-400 hover:text-primary transition-colors duration-300">CONTACT</a>
+    </nav>
+
+    <div class="flex gap-3">
+      <button id="hamburger"
+        class="md:hidden flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-primary hover:text-black transition-all duration-300"
+        aria-label="Toggle menu">
+        <span class="material-symbols-outlined text-lg" id="menuIcon">menu</span>
+      </button>
+      <a href="#contact"
+        class="hidden md:flex h-10 items-center gap-2 rounded-full border border-primary/30 bg-primary/10 pl-4 pr-5 text-primary hover:bg-primary hover:text-black transition-all duration-300">
+        <span class="material-symbols-outlined text-lg">mail</span>
+        <span class="text-xs font-bold tracking-wider">CONTACT</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Dropdown -->
+  <div id="mobileNav"
+    class="fixed top-[73px] left-0 right-0 z-30 bg-background-dark/95 backdrop-blur-md border-b border-white/5 hidden">
+    <nav class="flex flex-col gap-1 p-4">
+      <a href="#about"
+        class="mobile-link px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:bg-white/5 hover:text-primary transition-all">ABOUT</a>
+      <a href="#skills"
+        class="mobile-link px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:bg-white/5 hover:text-primary transition-all">SKILLS</a>
+      <a href="#projects"
+        class="mobile-link px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:bg-white/5 hover:text-primary transition-all">PROJECTS</a>
+      <a href="#contact"
+        class="mobile-link px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:bg-white/5 hover:text-primary transition-all">CONTACT</a>
+    </nav>
+  </div>
+
+  <div class="relative flex min-h-screen w-full flex-col">
+
+    <!-- Background Liquid Simulation -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[100px] animate-blob mix-blend-screen">
+      </div>
+      <div
+        class="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-secondary/10 rounded-full blur-[120px] animate-blob mix-blend-screen"
+        style="animation-delay:-3s"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/80 to-background-dark"></div>
+    </div>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section id="hero"
+      class="relative z-10 flex flex-grow flex-col items-center justify-center pt-28 pb-10 min-h-screen w-full">
+      <div class="relative w-full max-w-4xl flex items-center justify-center px-6">
+        <div class="relative flex flex-col items-center text-center">
+          <!-- Floating Status Badge -->
+          <div class="flex items-center gap-2 mb-6 reveal">
+            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-primary text-xs font-mono font-bold tracking-widest">SYSTEM_ONLINE // READY</span>
+          </div>
+
+          <p class="text-sm md:text-base text-slate-400 font-mono tracking-[0.2em] uppercase mb-4 reveal">Hello, I'm</p>
+          <h1 class="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-none mb-4 reveal hero-name">
+            SURYA KIRAN N
+          </h1>
+          <p class="text-xl md:text-2xl font-semibold text-primary/80 mb-6 reveal">Computer Science Engineering Student
+          </p>
+          <p class="text-slate-400 max-w-lg text-sm md:text-base font-light leading-relaxed mb-10 reveal">
+            Aspiring software developer with a passion for data-driven solutions and full-stack web applications.
+          </p>
+
+          <div class="flex gap-4 flex-wrap justify-center reveal">
+            <a href="#projects"
+              class="flex h-12 items-center gap-2 rounded-full bg-primary px-8 text-black font-bold text-sm tracking-wider hover:scale-105 hover:shadow-[0_0_30px_rgba(37,244,106,0.3)] transition-all duration-300">
+              <span class="material-symbols-outlined text-lg">dataset</span>
+              VIEW WORK
+            </a>
+            <a href="#contact"
+              class="flex h-12 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 text-white font-bold text-sm tracking-wider hover:border-primary hover:text-primary transition-all duration-300">
+              <span class="material-symbols-outlined text-lg">mail</span>
+              CONTACT
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative Satellites -->
+      <div class="absolute top-[30%] right-[8%] size-16 bg-white/5 rounded-full blur-sm animate-pulse hidden md:block">
+      </div>
+      <div
+        class="absolute bottom-[25%] left-[8%] size-12 bg-primary/10 rounded-full blur-sm animate-pulse hidden md:block">
+      </div>
+      <div
+        class="absolute top-[45%] left-[15%] size-8 bg-secondary/10 rounded-full blur-sm animate-pulse hidden md:block">
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="mt-8 flex justify-center w-full animate-bounce">
+        <span class="material-symbols-outlined text-white/20 text-4xl">keyboard_arrow_down</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <section id="about" class="relative z-10 w-full px-6 py-24 bg-background-dark/50 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 mb-4 reveal">
+          <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-primary text-xs font-mono font-bold tracking-widest">01 // IDENTITY</span>
+        </div>
+        <h3 class="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-none mb-12 reveal">ABOUT<br />ME
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 items-start">
+          <!-- Avatar -->
+          <div class="reveal">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-white/10 aspect-square hover:border-primary/50 transition-colors duration-500 group">
+              <img src="assets/avatar.webp" alt="Surya Kiran N"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div class="reveal">
+            <p class="text-slate-400 text-base leading-relaxed mb-6">
+              I'm a highly motivated and detail-oriented Computer Science Engineering student
+              at Rajarajeshwari College of Engineering, Bengaluru. With a strong foundation in
+              software development and problem solving, I'm proficient in Java, DBMS, and Python
+              programming with hands-on experience in data-driven projects.
+            </p>
+            <p class="text-slate-400 text-base leading-relaxed mb-10">
+              A quick learner with strong communication and leadership skills, I'm eager to
+              contribute meaningfully to tech-driven teams. I enjoy building full-stack web
+              applications and exploring the intersection of AI and practical problem solving.
+            </p>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4">
+              <div
+                class="rounded-xl bg-surface border border-white/5 p-5 text-center hover:border-primary/30 transition-colors duration-300">
+                <span class="block text-3xl font-bold text-primary mb-1">7.32</span>
+                <span class="text-[11px] font-mono text-slate-500 tracking-widest uppercase">CGPA</span>
+              </div>
+              <div
+                class="rounded-xl bg-surface border border-white/5 p-5 text-center hover:border-secondary/30 transition-colors duration-300">
+                <span class="block text-3xl font-bold text-secondary mb-1">2+</span>
+                <span class="text-[11px] font-mono text-slate-500 tracking-widest uppercase">PROJECTS</span>
+              </div>
+              <div
+                class="rounded-xl bg-surface border border-white/5 p-5 text-center hover:border-primary/30 transition-colors duration-300">
+                <span class="block text-3xl font-bold text-primary mb-1">4+</span>
+                <span class="text-[11px] font-mono text-slate-500 tracking-widest uppercase">CERTS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SKILLS ═══════════════ -->
+    <section id="skills" class="relative z-10 w-full px-6 py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 mb-4 reveal">
+          <span class="size-2 rounded-full bg-secondary animate-pulse"></span>
+          <span class="text-secondary text-xs font-mono font-bold tracking-widest">02 // CAPABILITIES</span>
+        </div>
+        <h3 class="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-none mb-12 reveal">TECH<br />STACK
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Programming -->
+          <div
+            class="group rounded-2xl bg-surface border border-white/5 p-6 hover:border-primary/50 transition-all duration-500 reveal">
+            <span
+              class="material-symbols-outlined text-primary text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">terminal</span>
+            <h4 class="text-lg font-bold text-white mb-4">Programming</h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Python</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">SQL</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">C++</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">HTML</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">JavaScript</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Java</span>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div
+            class="group rounded-2xl bg-surface border border-white/5 p-6 hover:border-secondary/50 transition-all duration-500 reveal">
+            <span
+              class="material-symbols-outlined text-secondary text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">database</span>
+            <h4 class="text-lg font-bold text-white mb-4">Databases</h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">MySQL</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">PostgreSQL</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">DBMS</span>
+            </div>
+          </div>
+
+          <!-- Tools & Libraries -->
+          <div
+            class="group rounded-2xl bg-surface border border-white/5 p-6 hover:border-primary/50 transition-all duration-500 reveal">
+            <span
+              class="material-symbols-outlined text-primary text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">build</span>
+            <h4 class="text-lg font-bold text-white mb-4">Tools & Libs</h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Pandas</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">NumPy</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Scikit-learn</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Flask</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">TensorFlow</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">OpenCV</span>
+            </div>
+          </div>
+
+          <!-- Others -->
+          <div
+            class="group rounded-2xl bg-surface border border-white/5 p-6 hover:border-secondary/50 transition-all duration-500 reveal">
+            <span
+              class="material-symbols-outlined text-secondary text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">settings</span>
+            <h4 class="text-lg font-bold text-white mb-4">Others</h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">Git</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">Linux</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">REST
+                APIs</span>
+              <span
+                class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROJECTS ═══════════════ -->
+    <section id="projects" class="relative z-10 w-full px-6 py-24 bg-background-dark/50 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4 reveal">
+              <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+              <span class="text-primary text-xs font-mono font-bold tracking-widest">03 // CASE STUDIES</span>
+            </div>
+            <h3 class="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-none reveal">
+              FEATURED<br />PROJECTS</h3>
+          </div>
+          <p class="text-slate-400 max-w-md text-sm md:text-base font-light leading-relaxed reveal">
+            Full-stack applications and AI-powered solutions built with modern technologies and best practices.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Skill Swap Card -->
+          <div
+            class="project-card group relative rounded-2xl bg-surface border border-white/5 overflow-hidden hover:border-primary/50 transition-colors duration-500 cursor-pointer reveal"
+            data-modal="modal-skillswap">
+            <div class="aspect-[4/3] w-full overflow-hidden">
+              <img src="assets/project1.webp" alt="Skill Swap"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-80" />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent p-6 flex flex-col justify-end">
+              <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">PYTHON / FLASK</span>
+                  <span
+                    class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+                </div>
+                <h4 class="text-2xl font-bold text-white mb-1">Skill Swap</h4>
+                <p
+                  class="text-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                  Full-stack web app with real-time chat, video conferencing, and community forums.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diabetic Retinopathy AI Card -->
+          <div
+            class="project-card group relative rounded-2xl bg-surface border border-white/5 overflow-hidden hover:border-secondary/50 transition-colors duration-500 cursor-pointer reveal"
+            data-modal="modal-retinopathy">
+            <div class="aspect-[4/3] w-full overflow-hidden">
+              <img src="assets/project2.webp" alt="Diabetic Retinopathy AI"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-80" />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent p-6 flex flex-col justify-end">
+              <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-mono text-secondary bg-secondary/10 px-2 py-1 rounded">TENSORFLOW /
+                    XAI</span>
+                  <span
+                    class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+                </div>
+                <h4 class="text-2xl font-bold text-white mb-1">Diabetic Retinopathy AI</h4>
+                <p
+                  class="text-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                  Transparent diagnosis model using CNN with Grad-CAM, LIME, and SHAP.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROJECT MODALS ═══════════════ -->
+
+    <!-- Skill Swap Modal -->
+    <div class="modal-overlay" id="modal-skillswap">
+      <div
+        class="modal max-w-2xl w-full mx-4 rounded-2xl bg-background-dark border border-white/10 overflow-y-auto overflow-x-hidden shadow-[0_24px_80px_rgba(0,0,0,.6)]">
+        <button
+          class="modal-close absolute top-4 right-4 z-10 flex size-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400 hover:bg-primary hover:text-black hover:border-primary transition-all"
+          aria-label="Close">&times;</button>
+        <div class="aspect-video w-full overflow-hidden">
+          <img src="assets/project1.webp" alt="Skill Swap" class="w-full h-full object-cover" />
+        </div>
+        <div class="p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-white mb-4 tracking-tight">Skill Swap — Full-Stack Web Application</h2>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Python</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Flask</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">Pandas</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">NumPy</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">JavaScript</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">PostgreSQL</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/15">REST
+              APIs</span>
+          </div>
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">OVERVIEW</p>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">Skill Swap is a collaborative peer-to-peer learning
+            platform that connects learners and mentors for real-time skill exchange. Built as a full-stack web
+            application, it provides an intuitive interface for users to list, discover, and share skills across
+            multiple domains.</p>
+
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">KEY FEATURES</p>
+          <ul class="space-y-3 text-slate-400 text-sm leading-relaxed mb-6">
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Developed a full-stack web application
+              using HTML, CSS, and JavaScript for the frontend and Flask (Python) for the backend, following the MVC
+              architecture pattern for clean separation of concerns.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Integrated PostgreSQL for efficient data
+              management, including user profiles and skill listings. Built and connected RESTful APIs for
+              authentication, skill sharing, and user interactions.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Implemented real-time chat, video
+              conferencing, and community forums to enhance collaborative learning experiences, enabling users to
+              communicate and learn together seamlessly.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Leveraged Pandas and NumPy for building
+              analytics dashboards that track user engagement, skill popularity, and learning progress metrics.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Designed a responsive, mobile-friendly UI
+              with advanced search and filter functionality, allowing users to discover skills by category, difficulty
+              level, rating, and mentor availability.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Implemented secure user authentication and
+              session management using Flask-Login, with password hashing (bcrypt) and CSRF protection for secure form
+              submissions.</li>
+            <li class="flex gap-3"><span class="text-primary mt-0.5">▹</span>Built a notification system to alert users
+              about new skill matches, incoming chat messages, and scheduled video conferencing sessions.</li>
+          </ul>
+
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">TECH HIGHLIGHTS</p>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-primary text-xs font-mono">BACKEND</span>
+              <p class="text-slate-400 text-xs mt-1">Flask + Python · RESTful API design · WebSocket server</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-primary text-xs font-mono">DATABASE</span>
+              <p class="text-slate-400 text-xs mt-1">PostgreSQL · SQLAlchemy ORM · Data modeling</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-primary text-xs font-mono">FRONTEND</span>
+              <p class="text-slate-400 text-xs mt-1">HTML · CSS · JavaScript · Responsive design</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-primary text-xs font-mono">ANALYTICS</span>
+              <p class="text-slate-400 text-xs mt-1">Pandas · NumPy · User engagement tracking</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diabetic Retinopathy AI Modal -->
+    <div class="modal-overlay" id="modal-retinopathy">
+      <div
+        class="modal max-w-2xl w-full mx-4 rounded-2xl bg-background-dark border border-white/10 overflow-y-auto overflow-x-hidden shadow-[0_24px_80px_rgba(0,0,0,.6)]">
+        <button
+          class="modal-close absolute top-4 right-4 z-10 flex size-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400 hover:bg-secondary hover:text-black hover:border-secondary transition-all"
+          aria-label="Close">&times;</button>
+        <div class="aspect-video w-full overflow-hidden">
+          <img src="assets/project2.webp" alt="Diabetic Retinopathy AI" class="w-full h-full object-cover" />
+        </div>
+        <div class="p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-white mb-4 tracking-tight">Diabetic Retinopathy — Explainable AI Diagnosis
+          </h2>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">TensorFlow</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">Keras</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">OpenCV</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">Scikit-learn</span>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-mono bg-secondary/10 text-secondary border border-secondary/15">Cloud
+              Deploy</span>
+          </div>
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">OVERVIEW</p>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">Developing a transparent diagnosis model for Diabetic
+            Retinopathy using Explainable AI. This project addresses the critical need for trustworthy AI in healthcare
+            by combining high-accuracy deep learning with interpretable visual explanations, enabling clinicians to
+            understand and validate AI-driven diagnoses.</p>
+
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">KEY FEATURES</p>
+          <ul class="space-y-3 text-slate-400 text-sm leading-relaxed mb-6">
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Developed a deep learning model (CNN) for
+              automated detection of diabetic retinopathy from retinal fundus images, achieving multi-class severity
+              grading (No DR, Mild, Moderate, Severe, Proliferative).</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Applied Explainable AI (XAI) techniques
+              (e.g., Grad-CAM, LIME, SHAP) to improve transparency and interpretability of predictions, generating
+              visual heatmaps that highlight regions of interest on retinal scans.</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Implemented data preprocessing and
+              augmentation (rotation, flips, brightness adjustment) to improve generalization and handle class imbalance
+              across different severity levels.</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Utilized TensorFlow/Keras for model
+              architecture with transfer learning from pre-trained networks (InceptionV3), fine-tuned on domain-specific
+              retinal image datasets.</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Integrated OpenCV for advanced image
+              preprocessing — including noise reduction, contrast enhancement (CLAHE), and retinal vessel segmentation
+              for improved feature extraction.</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Built a comprehensive evaluation
+              framework using Scikit-learn with precision, recall, F1-score, confusion matrix, and AUC-ROC curve
+              analysis to validate model performance against clinical benchmarks.</li>
+            <li class="flex gap-3"><span class="text-secondary mt-0.5">▹</span>Deployed the model on a cloud platform
+              with a web-based interface, allowing clinicians to upload retinal images and receive instant diagnoses
+              with visual explanations and confidence scores.</li>
+          </ul>
+
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">TECH HIGHLIGHTS</p>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-secondary text-xs font-mono">DEEP LEARNING</span>
+              <p class="text-slate-400 text-xs mt-1">TensorFlow · Keras · CNN · InceptionV3 transfer learning</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-secondary text-xs font-mono">EXPLAINABLE AI</span>
+              <p class="text-slate-400 text-xs mt-1">Grad-CAM · LIME · SHAP · Visual heatmaps</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-secondary text-xs font-mono">IMAGE PROCESSING</span>
+              <p class="text-slate-400 text-xs mt-1">OpenCV · CLAHE · Augmentation pipeline</p>
+            </div>
+            <div class="rounded-lg bg-surface border border-white/5 p-3">
+              <span class="text-secondary text-xs font-mono">DEPLOYMENT</span>
+              <p class="text-slate-400 text-xs mt-1">Cloud platform · Scikit-learn · Web interface</p>
+            </div>
+          </div>
+
+          <p class="text-slate-500 text-xs font-mono tracking-widest mb-4">PIPELINE</p>
+          <p class="text-slate-400 text-sm leading-relaxed">Retinal Image Input → OpenCV Preprocessing & CLAHE
+            Enhancement → Data Augmentation → CNN Feature Extraction (InceptionV3) → Multi-Class Classification → XAI
+            Heatmap Generation (Grad-CAM / LIME / SHAP) → Clinical Dashboard with Confidence Scores</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CONTACT ═══════════════ -->
+    <section id="contact" class="relative z-10 w-full px-6 py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 mb-4 reveal">
+          <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-primary text-xs font-mono font-bold tracking-widest">04 // TRANSMISSION</span>
+        </div>
+        <h3 class="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-none mb-4 reveal">GET
+          IN<br />TOUCH</h3>
+        <p class="text-slate-400 max-w-lg text-sm md:text-base font-light leading-relaxed mb-12 reveal">
+          Have a project in mind or just want to chat? Drop me a message!
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10">
+          <!-- Form -->
+          <form id="contactForm" class="flex flex-col gap-4 reveal">
+            <input type="text" id="formName" placeholder="Your Name" required
+              class="w-full px-5 py-4 rounded-xl bg-surface border border-white/5 text-white text-sm font-mono placeholder:text-slate-600 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all" />
+            <input type="email" id="formEmail" placeholder="Your Email" required
+              class="w-full px-5 py-4 rounded-xl bg-surface border border-white/5 text-white text-sm font-mono placeholder:text-slate-600 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all" />
+            <textarea id="formMessage" rows="5" placeholder="Your Message" required
+              class="w-full px-5 py-4 rounded-xl bg-surface border border-white/5 text-white text-sm font-mono placeholder:text-slate-600 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all resize-vertical"></textarea>
+            <button type="submit"
+              class="flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-black font-bold text-sm tracking-wider hover:scale-105 hover:shadow-[0_0_30px_rgba(37,244,106,0.3)] transition-all duration-300">
+              <span class="material-symbols-outlined text-lg">send</span>
+              SEND MESSAGE
+            </button>
+          </form>
+
+          <!-- Contact Info -->
+          <div class="flex flex-col gap-4 reveal">
+            <div
+              class="flex items-center gap-4 p-5 rounded-xl bg-surface border border-white/5 hover:border-primary/30 transition-colors duration-300">
+              <span class="material-symbols-outlined text-primary text-xl">mail</span>
+              <div>
+                <h4 class="text-xs font-mono text-slate-500 tracking-widest mb-1">EMAIL</h4>
+                <a href="mailto:abhisumithra8@gmail.com"
+                  class="text-sm text-slate-300 hover:text-primary transition-colors">abhisumithra8@gmail.com</a>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-4 p-5 rounded-xl bg-surface border border-white/5 hover:border-secondary/30 transition-colors duration-300">
+              <span class="material-symbols-outlined text-secondary text-xl">call</span>
+              <div>
+                <h4 class="text-xs font-mono text-slate-500 tracking-widest mb-1">PHONE</h4>
+                <p class="text-sm text-slate-300">+91-6363453055</p>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-4 p-5 rounded-xl bg-surface border border-white/5 hover:border-primary/30 transition-colors duration-300">
+              <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+              <div>
+                <h4 class="text-xs font-mono text-slate-500 tracking-widest mb-1">LOCATION</h4>
+                <p class="text-sm text-slate-300">Bengaluru, India</p>
+              </div>
+            </div>
+            <!-- Social -->
+            <div class="flex gap-3 mt-2">
+              <a href="https://github.com/Suryakiran0505" target="_blank"
+                class="group flex size-12 items-center justify-center rounded-full bg-surface border border-white/5 hover:border-primary hover:bg-primary/10 transition-all"
+                aria-label="GitHub">
+                <svg class="w-5 h-5 fill-slate-400 group-hover:fill-primary transition-colors" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/surya-kiran-n-a5171b329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                class="group flex size-12 items-center justify-center rounded-full bg-surface border border-white/5 hover:border-secondary hover:bg-secondary/10 transition-all"
+                aria-label="LinkedIn">
+                <svg class="w-5 h-5 fill-slate-400 group-hover:fill-secondary transition-colors" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="relative z-10 border-t border-white/5 bg-background-dark py-10 px-6">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col gap-1 items-center md:items-start">
+          <div class="flex items-center gap-2">
+            <div class="size-5 bg-primary rounded-full blur-[2px]"></div>
+            <h2 class="text-white text-lg font-bold tracking-widest">{ SK }</h2>
+          </div>
+          <p class="text-slate-500 text-xs font-mono">© 2026 SURYA KIRAN N // ALL RIGHTS RESERVED</p>
+        </div>
+        <div class="hidden md:flex flex-col items-end gap-1 text-xs font-mono text-slate-600">
+          <span>BUILT WITH: HTML / CSS / JS</span>
+          <span>DESIGN: LIQUID_METAL V1.0</span>
+          <span>STATUS: DEPLOYED</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

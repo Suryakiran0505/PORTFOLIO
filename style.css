@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════
+   LIQUID METAL PORTFOLIO — CUSTOM STYLES
+   (Tailwind handles most styling via CDN)
+   ═══════════════════════════════════════════════════ */
+
+/* ── Base ── */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050a07;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a2e22;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #25f46a;
+}
+
+/* ── Gooey SVG Filter Container ── */
+.gooey-container {
+    filter: url('#goo');
+}
+
+/* ── Grain Overlay ── */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ── Hero Name Gradient Shimmer ── */
+.hero-name {
+    background: linear-gradient(135deg, #25f46a, #a855f7, #25f46a);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 200% center;
+    }
+}
+
+/* ── Reveal animation ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(.4, 0, .2, 1), transform 0.7s cubic-bezier(.4, 0, .2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Nav active state ── */
+.nav-link.active {
+    color: #25f46a !important;
+}
+
+/* ── Modal ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
+    padding: 24px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(24px) scale(.97);
+    transition: transform .35s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0) scale(1);
+}
+
+.modal::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: rgba(37, 244, 106, .3);
+    border-radius: 2px;
+}
+
+/* ── Toast ── */
+.toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    padding: 14px 24px;
+    background: #25f46a;
+    color: #000;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: .85rem;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 8px 32px rgba(37, 244, 106, .3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform .4s ease, opacity .4s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Animation delays ── */
+[style*="animation-delay:-3s"] {
+    animation-delay: -3s;
+}
